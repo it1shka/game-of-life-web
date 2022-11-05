@@ -1,0 +1,17 @@
+$primary-color: #3ec23e;
+
+@mixin background-img($image) {
+  background: url($image) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@mixin dark-hover($color, $darkness) {
+  background-color: $color;
+  transition: 0.1s background-color;
+  &:hover {
+    background-color: darken($color, $darkness);
+  }
+}

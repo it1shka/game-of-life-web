@@ -1,0 +1,77 @@
+@use 'globals' as *;
+
+.main-container {
+
+  min-height: 100vh;
+  @include background-img('main-background.png');
+  display: grid;
+  place-items: center;
+
+  .centered {
+
+    padding: 1em;
+    background-color: white;
+    border-radius: 7px;
+
+    .game {
+      display: grid;
+      grid-template-rows: repeat(30, 1fr);
+      grid-template-columns: repeat(30, 1fr);
+      gap: 1px;
+    }
+
+    .action-panel {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 0.5em;
+      & > * + * {
+        margin-left: 0.5em;
+      }
+    }
+
+  }
+
+}
+
+.action-panel {
+  button {
+    font-size: inherit;
+    border: none;
+    padding: 0.2em;
+    border-radius: 7px;
+
+    transition: all 0.1s ease-in;
+    transition-property: background-color, color;
+
+    &.featured {
+      background-color: lighten($primary-color, 30%);
+    }
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      color: white;
+    }
+  }
+}
+
+.game {
+
+  $cell-size: 20px;
+  div {
+    height: $cell-size;
+    width: $cell-size;
+  }
+
+  $dead-color: #ddd;
+  $living-color: $primary-color;
+
+  div {
+    @include dark-hover($dead-color, 10%);
+  }
+
+  div.living {
+    @include dark-hover($living-color, 10%);
+  }
+
+}

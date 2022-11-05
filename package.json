@@ -1,0 +1,17 @@
+{
+  "name": "game-of-life-web",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Conway's game of life written in javascript",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "it1shka",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "typescript": "^4.8.4"
+  }
+}

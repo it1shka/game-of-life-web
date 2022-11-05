@@ -1,0 +1,50 @@
+@use 'globals' as *;
+
+.not-found {
+
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  @include background-img('/assets/notfound-background.png');
+
+  $local-color: #7f7fff;
+  .not-found__centered {
+
+    padding: 2em 3em;
+    background-color: white;
+    box-shadow: $local-color 0 0 6px;
+
+    max-width: 600px;
+
+    * + * {
+      margin-top: 0.5em;
+    }
+
+    p {
+      font-size: 1.25em;
+      color: grey;
+    }
+
+    a {
+      display: inline-block;
+      padding: 0.5em;
+      margin-left: -0.5em;
+      color: darken($local-color, 5%);
+      font-weight: bold;
+      text-decoration: none;
+      background-color: white;
+      border-radius: 7px;
+
+      transition: 0.1s all ease-in;
+      transition-property: background-color, color;
+
+      &:hover {
+        background-color: darken($local-color, 5%);
+        color: white;
+      }
+
+    }
+
+  }
+
+}
