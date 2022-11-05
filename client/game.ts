@@ -32,4 +32,11 @@ const Game = new Proxy(gameState, {
     }
 }) as GameState
 
+for (let row = 0; row < boardSize; row++) {
+    for (let col = 0; col < boardSize; col++) {
+        const cell = realBoard[row * boardSize + col]
+        cell.onclick = () => Game.toggleCell(row, col)
+    }
+}
+
 export default Game

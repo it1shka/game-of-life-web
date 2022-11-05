@@ -8,7 +8,7 @@ export function find<T extends Element = Element>(query: string) {
 
 export function createBoard(size: number) {
     const game = find<HTMLDivElement>('.game')
-    const cells = new Array(size * size)
+    const cells = new Array<HTMLDivElement>(size * size)
     for (let i = 0; i < size * size; i++) {
         const cell = document.createElement('div')
         cells[i] = cell
@@ -71,4 +71,29 @@ export function downloadImage(src: string, name: string) {
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
+}
+
+export class Ticker {
+
+    private interval: number | undefined
+
+    constructor(
+        private readonly action: Function,
+        private readonly tickTime: number
+    ) {}
+
+    start() {
+        this.interval = setInterval(() => {
+            this.action()
+        }, this.tickTime)
+    }
+
+    pause() {
+        clearInterval(this.interval)
+        this.interval = undefined
+    }
+
+    get running() {
+        return this.interval !== undefined
+    }
 }
