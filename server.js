@@ -1,6 +1,7 @@
 import express from 'express'
 import path from 'node:path'
 import url from 'node:url'
+import ApiRouter from './api/router.js'
 
 const __filename = url.fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -8,6 +9,8 @@ const __dirname = path.dirname(__filename)
 const app = express()
 
 app.use('/assets', express.static('assets'))
+
+app.use('/api', ApiRouter)
 
 app.get('/', (_, res) => {
     const filepath = path.join(__dirname, 'html', 'index.html')

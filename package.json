@@ -12,6 +12,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
+    "sequelize": "^6.25.3",
+    "sqlite3": "^5.1.2",
     "typescript": "^4.8.4"
   }
 }
