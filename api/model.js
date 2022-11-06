@@ -20,6 +20,9 @@ const Frame = sequelize.define('Frame', {
     likes: DataTypes.INTEGER,
 })
 
+// await sequelize.sync({ alter: true })
+await sequelize.sync()
+
 export async function createNewFrame(name, frame) {
     await Frame.create({
         name, frame, likes: 0

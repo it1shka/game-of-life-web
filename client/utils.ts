@@ -83,17 +83,72 @@ export class Ticker {
     ) {}
 
     start() {
-        this.interval = setInterval(() => {
+        this.interval = window.setInterval(() => {
             this.action()
         }, this.tickTime)
     }
 
     pause() {
-        clearInterval(this.interval)
+        window.clearInterval(this.interval)
         this.interval = undefined
     }
 
     get running() {
         return this.interval !== undefined
     }
+}
+
+const customPrompt = find<HTMLDivElement>('#custom-prompt')
+export function promptUser(promptTitle: string, placeholder: string) {
+    const form = customPrompt.querySelector('form')!
+    const title = form.querySelector('h1')!
+    const input = form.querySelector('input')!
+
+    title.textContent = promptTitle
+    input.placeholder = placeholder
+
+    return new Promise<string>(resolve => {
+        customPrompt.classList.remove('closed')
+        form.onsubmit = event => {
+            event.preventDefault()
+            const value = input.value
+            input.value = ''
+            customPrompt.classList.add('closed')
+            resolve(value)
+        }
+    })
+}
+
+export function boardToFrame(board: boolean[][]) {
+    return board
+        .map(row =>
+            row.map(Number).join('')).join('\n')
+}
+
+export function frameToBoard(frame: string) {
+    return frame
+        .split('\n')
+        .map(row =>
+            row.split('').map(e => e === '1'))
+}
+
+export function sleep(time: number) {
+    return new Promise<void>(resolve => {
+        setTimeout(resolve, time)
+    })
+}
+
+export async function popupAlert(message: string) {
+    const popup = document.createElement('aside')
+    popup.classList.add('popup')
+    popup.textContent = message
+    document.body.appendChild(popup)
+
+    await sleep(10)
+    popup.classList.add('active')
+    await sleep(3000)
+    popup.classList.remove('active')
+
+    await sleep(2000)
+    document.body.removeChild(popup)
 }

@@ -13,6 +13,7 @@ class ApiController {
             await createNewFrame(name, frame)
             res.status(200).send('Successfully added frame')
         } catch (err) {
+            console.log(err)
             res.status(400).send('Failed to create new frame')
         }
     }
@@ -23,6 +24,7 @@ class ApiController {
             const frames = await getFramesWithOffset(offset)
             res.status(200).send(frames)
         } catch (err) {
+            console.log(err)
             res.status(400).send('Failed to retrieve frames')
         }
     }
@@ -33,6 +35,7 @@ class ApiController {
             await likeFrame(frameId)
             res.status(200).send('Successfully liked frame ' + frameId)
         } catch (err) {
+            console.log(err)
             res.status(400).send('Failed to like frame')
         }
     }

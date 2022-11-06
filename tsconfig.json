@@ -5,6 +5,8 @@
     "lib": ["ES2019", "DOM"],
     "target": "ES2019",
     "outDir": "./assets",
+    "moduleResolution": "Node"
   },
-  "include": ["client"]
+  "include": [ "client" ],
+  "exclude": [ "node_modules" ]
 }

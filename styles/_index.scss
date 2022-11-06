@@ -1,14 +1,12 @@
 @use 'globals' as *;
 
 .main-container {
-
   min-height: 100vh;
   @include background-img('main-background.png');
   display: grid;
   place-items: center;
 
   .centered {
-
     padding: 1em;
     background-color: white;
     border-radius: 7px;
@@ -29,9 +27,7 @@
         margin-left: 0.5em;
       }
     }
-
   }
-
 }
 
 .action-panel {
