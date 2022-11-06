@@ -1,6 +1,7 @@
 import './game.js'
 import Game from './game.js'
 import Api from './api.js'
+import LoadPanel from './loadpanel.js'
 import {boardToFrame, createImageFrom, downloadImage, find, onButton, popupAlert, promptUser, Ticker} from './utils.js'
 
 onButton('#save-btn', () => {
@@ -47,4 +48,8 @@ onButton('#share-btn', async () => {
     } catch (err) {
         console.log(`Failed to share frame due to network error: ${err}`)
     }
+})
+
+onButton('#load-btn', () => {
+    LoadPanel.open()
 })

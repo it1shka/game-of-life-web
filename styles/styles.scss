@@ -1,6 +1,7 @@
 @use 'globals' as *;
 @use 'notfound';
 @use 'index';
+@use 'loadpanel';
 
 ::before, ::after, * {
   margin: 0;

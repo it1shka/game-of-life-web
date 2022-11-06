@@ -33,7 +33,7 @@ export async function getFramesWithOffset(offset) {
     return await Frame.findAll({
         offset: offset,
         limit: 5,
-        order: ['createdAt', 'DESC'],
+        order: [['createdAt', 'DESC']],
         raw: true
     })
 }

@@ -1,0 +1,36 @@
+@use "globals" as *;
+
+#load-panel {
+  ul {
+    //background-color: white;
+    //border-radius: 7px 7px 7px 0px;
+
+    list-style-type: none;
+    max-width: 600px;
+    width: 100%;
+    height: calc(100% - 100px);
+
+    & > li + li {
+      margin-top: 0.35em;
+    }
+
+    li {
+      background-color: white;
+      border-radius: 7px;
+      padding: 0.5em 1em;
+      // TODO: continue...
+    }
+  }
+
+  #close-panel-button {
+    position: relative;
+    bottom: -100%;
+    right: 0;
+    border: none;
+    padding: 0.2em 0.5em;
+    // border-radius: 0px 0px 7px 7px;
+    border-radius: 7px;
+    @include dark-hover(#d93300, 10%);
+    color: white;
+  }
+}
