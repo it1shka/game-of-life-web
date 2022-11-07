@@ -109,6 +109,7 @@ export function promptUser(promptTitle: string, placeholder: string) {
 
     return new Promise<string>(resolve => {
         customPrompt.classList.remove('closed')
+        input.focus()
         form.onsubmit = event => {
             event.preventDefault()
             const value = input.value

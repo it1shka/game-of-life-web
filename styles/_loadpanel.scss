@@ -1,36 +1,73 @@
 @use "globals" as *;
 
 #load-panel {
-  ul {
-    //background-color: white;
-    //border-radius: 7px 7px 7px 0px;
-
-    list-style-type: none;
+  .frames-list {
+    max-height: 90%;
     max-width: 600px;
     width: 100%;
-    height: calc(100% - 100px);
-
+    overflow-y: auto;
+    overflow-x: hidden;
+    list-style-type: none;
     & > li + li {
-      margin-top: 0.35em;
-    }
-
-    li {
-      background-color: white;
-      border-radius: 7px;
-      padding: 0.5em 1em;
-      // TODO: continue...
+      margin-top: 0.25em;
     }
   }
 
-  #close-panel-button {
-    position: relative;
-    bottom: -100%;
-    right: 0;
+  .panel-buttons {
+    margin-top: 0.5em;
+    & > button + button {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+.frames-list li {
+  background-color: white;
+  padding: 1em 2em;
+
+  transition: 0.3s all ease-out;
+  transition-property: border-radius, transform;
+
+  &:hover {
+    border-radius: 7px 0px 0px 7px;
+    transform: translateX(25px);;
+  }
+
+  button + button { margin-left: 0.35em; }
+
+  button {
+    margin-top: 0.35em;
     border: none;
     padding: 0.2em 0.5em;
-    // border-radius: 0px 0px 7px 7px;
-    border-radius: 7px;
-    @include dark-hover(#d93300, 10%);
+    font-size: inherit;
+
+    $load-btn-color: lighten($primary-color, 30%);
+    &.load-btn {
+      @include dark-hover($load-btn-color, 10%);
+    }
+
+    &.liked {
+      color: white;
+      border-radius: 7px;
+      @include dark-hover(#bb321a, 10%);
+    }
+  }
+}
+
+#load-panel .panel-buttons {
+  button {
+    border: none;
+    padding: 0.2em 0.5em;
+    font-size: inherit;
+  }
+
+  #close-panel-button {
+    @include dark-hover(#de4b1c, 10%);
+    color: white;
+  }
+
+  #fetch-next-frames {
+    @include dark-hover(#c27ce5, 10%);
     color: white;
   }
 }

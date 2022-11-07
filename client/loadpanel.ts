@@ -6,8 +6,8 @@ class LoadPanel {
 
     private readonly root = find<HTMLDivElement>('#load-panel')
     private readonly list = this.root.querySelector('ul')!
-    private readonly closeButton: HTMLButtonElement = this.list.querySelector('#close-panel-button')!
-    private readonly fetchNextButton: HTMLButtonElement = this.list.querySelector('#fetch-next-frames')!
+    private readonly closeButton: HTMLButtonElement = this.root.querySelector('#close-panel-button')!
+    private readonly fetchNextButton: HTMLButtonElement = this.root.querySelector('#fetch-next-frames')!
 
     private offset = 0
 
@@ -39,16 +39,23 @@ class LoadPanel {
             frameElement.appendChild(title)
 
             const likeButton = document.createElement('button')
+            likeButton.classList.add('like-btn')
             likeButton.textContent = `${frame.likes} likes`
             likeButton.onclick = async () => {
                 const success = await Api.likeFrame(frame.id)
-                popupAlert(success ? `Liked "${frame.name}" frame!` : 'Failed to like frame')
+                if (!success) {
+                    popupAlert('Failed to like a frame')
+                    return
+                }
+                popupAlert(`Liked "${frame.name}" frame!`)
+                likeButton.classList.add('liked')
                 likeButton.textContent = `${frame.likes + 1} likes`
                 likeButton.onclick = null
             }
             frameElement.appendChild(likeButton)
 
             const loadButton = document.createElement('button')
+            loadButton.classList.add('load-btn')
             loadButton.textContent = 'Load frame'
             loadButton.onclick = () => {
                 const board = frameToBoard(frame.frame)
@@ -59,6 +66,10 @@ class LoadPanel {
             this.list.appendChild(frameElement)
         }
         this.offset += 5
+        this.list.scrollTo({
+            top: this.list.scrollHeight,
+            behavior: 'smooth',
+        })
     }
 }
 
